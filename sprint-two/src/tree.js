@@ -1,4 +1,4 @@
-var _ = require ('underscore');
+// var _ = require ('underscore');
 
 var Tree = function(value) {
   var newTree = {};
@@ -19,8 +19,21 @@ treeMethods.addChild = function(value) {
   this.children[this.counter++] = Tree(value);
 };
 
-treeMethods.contains = function(target) {
-  
+treeMethods.contains = function (target) {
+  var doesContain = false;
+
+  var checkNode = function(node) {
+    if (node.value === target) {
+      doesContain = true;
+    }
+    
+    for (var child in node.children) {
+      checkNode(node.children[child]);
+    }
+  };
+
+  checkNode(this);
+  return doesContain;
 };
 
 
