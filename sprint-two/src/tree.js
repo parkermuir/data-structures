@@ -1,9 +1,14 @@
+var _ = require ('underscore');
+
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
+  newTree.counter = 0;
+
+  _.extend(newTree, treeMethods);
 
   // your code here
-  newTree.children = null;  // fix me
+  newTree.children = {}; // fix me
 
   return newTree;
 };
@@ -11,9 +16,11 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
+  this.children[this.counter++] = Tree(value);
 };
 
 treeMethods.contains = function(target) {
+  
 };
 
 
