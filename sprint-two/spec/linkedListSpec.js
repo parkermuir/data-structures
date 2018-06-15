@@ -52,4 +52,16 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should be able to account for removeHead on an empty list', function() {
+    var expected = linkedList;
+    linkedList.removeHead();
+    var actual = linkedList;
+    expect(actual).to.equal(expected);
+  });
+
+  it('should have the same head and tail when only one item has been added', function() {
+    linkedList.addToTail('A');
+    expect(linkedList.head).to.equal(linkedList.tail);
+  });
+
 });

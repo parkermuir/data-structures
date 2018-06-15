@@ -10,15 +10,17 @@ var LinkedList = function() {
       this.head = node;
       this.tail = node;
     } else {
-      this.head.next = node;
+      this.tail.next = node;
       this.tail = node;
     }
   };
 
   list.removeHead = function() {
-    var currHead = this.head;
-    list.head = list.head.next;
-    return currHead.value;
+    if (list.head !== null) {
+      var temp = this.head;
+      list.head = list.head.next;
+      return temp.value;
+    }
   };
 
   list.contains = function(target) {
@@ -45,6 +47,8 @@ var Node = function(value) {
 
   return node;
 };
+
+modules.export = linkedList;
 
 /*
  * Complexity: What is the time complexity of the above functions?
