@@ -37,13 +37,9 @@ bstMethods.contains = function (value) {
   var goRight = (value > this.value);
 
   if (goLeft && this.left !== null) {
-    if (this.left.contains(value)) {
-      return true;
-    }
+    return this.left.contains(value);
   } else if (goRight && this.right !== null) {
-    if (this.right.contains(value)) {
-      return true;
-    }
+    return this.right.contains(value);
   }
 
   return false;
@@ -65,4 +61,7 @@ bstMethods.depthFirstLog = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * insert - O(n/2)
+ * contains - O(n/2)
+ * depthFirstLog - O(n)
  */
