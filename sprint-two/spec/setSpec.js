@@ -24,4 +24,10 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should not accept duplicate values', function() {
+    set.add('Parker');
+    set.add('Parker');
+    set.add('Peter');
+    set.add('Peter');
+  });
 });
