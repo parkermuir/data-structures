@@ -80,9 +80,8 @@ var DoublyLinkedList = function () {
 
       var temp = this.tail;
       temp.next = node;
-
       this.tail = node;
-      
+
     }
   };
 
@@ -93,9 +92,28 @@ var DoublyLinkedList = function () {
 
   };
 
-  instance.contains = function () {
-    
+  instance.contains = function (target) {
+    var current = this.head;
 
+    while (current !== null) {
+      if (current.value === target) {
+        return true;
+      }
+      current = current.next;
+    }
+
+    return false;
+  };
+
+  instance.addToHead = function (value) {
+    var node = Node(value);
+    node.next = this.head;
+    this.head = node;
+  };
+
+  instance.removeTail = function () {
+    this.tail = this.tail.prev;
+    this.tail.next = null;
   };
 
   return instance;
