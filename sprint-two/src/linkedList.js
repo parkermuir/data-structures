@@ -3,7 +3,7 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value) {
+  list.addToTail = function (value) {
     var node = Node(value);
 
     if (this.tail === null) {
@@ -15,7 +15,7 @@ var LinkedList = function() {
     }
   };
 
-  list.removeHead = function() {
+  list.removeHead = function () {
     if (list.head !== null) {
       var temp = this.head;
       list.head = list.head.next;
@@ -24,7 +24,7 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    //maybe better to try using recursion here?
+  //maybe better to try using recursion here?
     var current = list.head;
 
     while (current !== null) {
@@ -48,7 +48,7 @@ var Node = function(value) {
   return node;
 };
 
-modules.export = linkedList;
+// modules.export = linkedList;
 
 /*
  * Complexity: What is the time complexity of the above functions?
@@ -56,3 +56,47 @@ modules.export = linkedList;
  * remove head seems v fast
  * contains seems really slow and potentially inefficient
  */
+
+var DoublyLinkedList = function () {
+  var instance = {};
+  instance.head = null; //pointer to first - thus never have previous
+  instance.tail = null; //last/front - thus will never have next
+
+  instance.addToTail = function (value) {
+    var node = Node(value);
+    node.value = value;
+    node.next = null;
+    node.prev = null;
+
+    if (this.tail === null) {
+      this.head = node;
+      this.tail = node;
+    } else if (this.head.next === null) {
+      this.head.next = node;
+      node.prev = this.tail;
+      this.tail = node;
+    } else {
+      node.prev = this.tail;
+
+      var temp = this.tail;
+      temp.next = node;
+
+      this.tail = node;
+      
+    }
+  };
+
+  instance.removeHead = function () {
+    var temp = this.head.next;
+    temp.prev = null;
+    this.head = temp;
+
+  };
+
+  instance.contains = function () {
+    
+
+  };
+
+  return instance;
+};
