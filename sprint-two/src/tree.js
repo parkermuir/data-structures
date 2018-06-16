@@ -8,7 +8,8 @@ var Tree = function(value) {
   _.extend(newTree, treeMethods);
 
   // your code here
-  newTree.children = {}; // fix me
+  newTree.children = {};
+  newTree.parent = null;
 
   return newTree;
 };
@@ -16,7 +17,11 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  this.children[this.counter++] = Tree(value);
+  var tree = Tree(value);
+
+  tree.parent = this;
+  this.children[this.counter++] = tree;
+
 };
 
 treeMethods.contains = function (target) {
@@ -36,8 +41,21 @@ treeMethods.contains = function (target) {
   return doesContain;
 };
 
+treeMethods.removeFromParent = function() {
+  //remove from parent, dissassociates the tree with parent in both directions 
+  for (var childNum in this.parent.children) {
+    var childNode = this.parent.children[childNum];
+    if (childNode.value === this.value) {
+      delete this.parent.children[childNum];
+    }
+  }
 
+  this.parent = null;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addchild O(1)
+ * contains O(n)
+ * removeFromParent O(n)
  */
